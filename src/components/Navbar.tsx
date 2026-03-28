@@ -32,7 +32,10 @@ export function Navbar() {
   const isActive = (to: string) => location.pathname === to
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[9999] flex flex-col items-center pt-3.5 pointer-events-none">
+    <nav 
+    className="fixed top-0 left-0 w-full z-[9999] flex flex-col items-center pt-3.5 pointer-events-none"
+    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+    >
       <div
         className={[
           "pointer-events-auto relative flex items-center",

@@ -270,8 +270,7 @@ export default function CloudAnimation() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Cinzel:wght@400&display=swap');
-
+      
         .ca-hero {
           position: relative;
           width: 100%;
@@ -342,7 +341,7 @@ export default function CloudAnimation() {
           bottom: 2rem;
           left: 50%;
           transform: translateX(-50%);
-          z-index: 3;
+          z-index: 10;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -375,7 +374,7 @@ export default function CloudAnimation() {
           </div>
         </div>
 
-        <div className="ca-hint" style={{ opacity: dissolve * 0.85 }}>
+        <div className="ca-hint">
           <span>Scroll</span>
           <svg width="16" height="22" viewBox="0 0 16 22" fill="none">
             <rect x="5.5" y="1" width="5" height="10" rx="2.5"
