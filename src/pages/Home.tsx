@@ -1,349 +1,223 @@
-import CloudAnimation from "../ui/CloudAnimation";
-import SectionDivider from "../ui/SectionDivider";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
 
-
-
-const skills = [
-  "JavaScript",
-  "TypeScript",
-  "Go",
-  "Python",
-  "React",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Three.js",
-  "Node.js",
-  "Express.js",
-  "Flask",
-  "MongoDB",
-  "Git",
-];
-
-// projects interface
-interface Project {
-  title: string
-  description: string
-  tags: string[]
-  image: string
-  githubUrl?: string
-  liveUrl?: string
-}
- 
-const featuredProjects: Project[] = [
+const featuredProjects = [
   {
     title: "Shareout",
-    description: "Share text, images, and files instantly via secure, temporary sessions — no account needed.",
+    description:
+      "Share text, images, and files instantly via secure, temporary sessions — no account needed.",
     tags: ["JavaScript", "React", "Node.js"],
-    image: "/projects/shareout.png",
-    githubUrl: "https://github.com/Saisathvik94/Shareout",
-    liveUrl: "https://shareout-taupe.vercel.app/"
   },
   {
     title: "Vendora",
-    description: "Vendora is a full-stack marketplace web app with a modular architecture for efficiently managing products, users, and dynamic interactions.",
-    tags: ["React", "Nodejs", "Expressjs", "MongoDb"],
-    image: "/projects/vendora.png",
-    githubUrl: "https://github.com/Saisathvik94/organizer",
+    description:
+      "A full-stack marketplace with modular architecture for managing products and users.",
+    tags: ["React", "Node.js", "MongoDB"],
   },
   {
     title: "CodeMaxx",
-    description: "AI-powered tool to explain, fix, and improve your code — works across multiple languages.",
+    description:
+      "AI-powered tool to explain, fix, and improve code across multiple languages.",
     tags: ["Go", "AI", "CLI"],
-    image: "/projects/codemaxx.png",
-    githubUrl: "https://github.com/Saisathvik94/codemaxx",
   },
-];
+]
+
 
 export function Home() {
-   
-   return (
-      <div>
-         <CloudAnimation />
-         {/* Intro section */}
-         <section className="relative z-10 w-full min-h-screen flex items-center justify-center px-6 sm:px-8 py-16 sm:py-24">        
-         <motion.div 
+   const ref = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  const y = useTransform(scrollYProgress, [0, 1], [80, 0])
+  return (
+    <div className="bg-[#fafafa] text-[#111] mt-25 md:mt-25">
+      {/* HERO */}
+      <section className="min-h-screen bg-[#fafafa] text-black flex items-center px-4 md:px-16">
+         <div className="max-w-7xl w-full flex flex-col md:flex-row items-center gap-16">
+         <motion.div
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            transition={{ staggerChildren: 0.15, delayChildren: 0.4 }}
-            className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 max-w-6xl w-full"
+            animate="show"
+            className="flex-1"
          >
-            
-            <motion.div 
-               variants={{
-               hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)" },
-               show: { opacity: 1, scale: 1, filter: "blur(0px)" }
-               }}
-               transition={{ duration: 1, ease: "easeOut" }}
-               className="relative flex-shrink-0"
+            <motion.h1
+               variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}}}
+               className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1]"
             >
-               <motion.div
-               animate={{ y: [0, -20, 0] }}
-               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-               className="w-40 h-40 sm:w-56 sm:h-56 md:w-80 md:h-80 rounded-full p-1.5 backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl overflow-hidden"
-               >
-               <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
-                  <span className="text-[10px] text-white/20 tracking-[0.5em] uppercase">
-                     <img src="/profilephoto.jpeg" alt="myimage" />
-                  </span>
-               </div>
-               </motion.div>
-               
-               <div className="absolute -inset-10 bg-blue-400/10 blur-[100px] rounded-full -z-10" />
-            </motion.div>
+               I’m Sai Sathvik, I build full-stack applications, developer tools, and real-time systems.
+            </motion.h1>
 
-            <div className="text-center md:text-left flex flex-col items-center md:items-start max-w-xl w-full">
-               <motion.span 
-               variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-               className="text-white/40 text-[10px] md:text-xs font-bold uppercase tracking-[0.6em] mb-4 block"
-               >
-               Web Developer & Go Enthusiast
-               </motion.span>
-               
-               <motion.h1 
-               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-               className="text-white text-4xl sm:text-6xl md:text-8xl font-light mb-4 tracking-tight"
-               style={{ fontFamily: "'Cormorant Garamond', serif" }}
-               >
-               Sai Sathvik
-               </motion.h1>
+            {/* SECOND LINE */}
+            <motion.p
+               variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}}}
+               className="mt-8 text-lg md:text-xl text-black/60 max-w-2xl leading-relaxed"
+            >
+               I design and build software that is performant, reliable, and
+               built for real-world use from web applications to backend systems.
+            </motion.p>
 
-               <motion.h2 
-               variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
-               className="text-blue-100/70 text-base sm:text-xl md:text-2xl font-light italic mb-8 px-4 sm:px-0"
-               style={{ fontFamily: "'Cormorant Garamond', serif" }}
-               >
-               Building fast, purposeful software from web apps to CLI tools.
-               </motion.h2>
-
-               <motion.div 
-               variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-               className="flex gap-6 sm:gap-8 items-center md:items-start"
-               >
-                  {['About', 'Projects', 'Contact'].map((link) => (
-                  <a 
-                     key={link} 
-                     href={`${link.toLowerCase()}`}
-                     className="text-white/40 hover:text-white transition-all duration-300 text-[10px] uppercase tracking-[0.3em] border-b border-transparent hover:border-white/40 pb-1"
-                  >
-                     {link}
-                  </a>
-                  ))}
-               </motion.div>
-            </div>
-
-         </motion.div>
-         </section>
-
-         <SectionDivider/>
-
-         {/* Skills */}
-
-         <section className="w-full px-6 sm:px-10 md:px-16 lg:px-20 py-20 sm:py-24">
+            {/* LINKS */}
             <motion.div
-            className="w-full flex flex-col gap-8 sm:gap-10"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 }}}}
+               variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}}}
+               className="mt-10 flex gap-8 text-xs uppercase tracking-[0.3em]"
             >
-               {/* Heading */}
-               <motion.div variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}}} 
-               className="flex flex-col gap-3">
-                  <p className="text-white/50 text-xs sm:text-sm font-medium tracking-widest uppercase">
-                     What I work with
-                  </p>
-                  <h2
-                     className="text-white text-4xl sm:text-5xl font-bold leading-tight"
-                     style={{ fontFamily: "'DM Serif Display', serif" }}
-                  >
-                     Skills
-                  </h2>
-                  <motion.div
-                     className="h-[2px] w-28 rounded-full bg-white/40"
-                     initial={{ scaleX: 0, originX: 0 }}
-                     whileInView={{ scaleX: 1 }}
-                     transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                     viewport={{ once: true }}
-                  />
-               </motion.div>
-         
-               <motion.div
-                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 }}}}
-                  className="flex flex-wrap gap-2 sm:gap-3"
-               >
-                  {skills.map((skill, i) => (
-                     <motion.span
-                     key={i}
-                     variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }}}}
-                     whileHover={{ y: -2, scale: 1.05 }}
-                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                     className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs   sm:text-sm font-medium text-white bg-white/10 border border-white/25 hover:bg-white/20 hover:border-blue-400/70 hover:text-blue-200 transition-colors duration-200 backdrop-blur-sm"
-                     >
-                     {skill}
-                     </motion.span>
-                  ))}
-               </motion.div>
-            </motion.div>
-         </section>
-
-         <SectionDivider/>
-
-         {/* Projects */}
-         <section className="w-full px-6 sm:px-10 md:px-16 lg:px-20 py-20 sm:py-24">
-            <motion.div
-            className="w-full flex flex-col gap-10 sm:gap-12"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={{
-               hidden: {},
-               show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
-            }}
-            >
-      
-            <motion.div
-               variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-               }}
-               className="flex flex-col gap-3"
-            >
-               <p className="text-white/50 text-xs sm:text-sm font-medium tracking-widest uppercase">
-                  Things I've built
-               </p>
-               <h2
-                  className="text-white text-4xl sm:text-5xl font-bold leading-tight"
-                  style={{ fontFamily: "'DM Serif Display', serif" }}
-               >
-                  Projects
-               </h2>
-               <motion.div
-                  className="h-[2px] w-42 rounded-full bg-white/40"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true }}
-               />
-            </motion.div>
-      
-            {/* Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-               {featuredProjects.map((project, i) => (
-                  <motion.div
-                  key={i}
-                  variants={{
-                     hidden: { opacity: 0, y: 20 },
-                     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-                  }}
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="group flex flex-col rounded-2xl overflow-hidden
-                              bg-white/10 border border-white/20
-                              hover:bg-white/15 hover:border-white/35
-                              backdrop-blur-sm transition-colors duration-300"
-                  >
-                  {/* Screenshot */}
-                  <div className="relative w-full h-44 overflow-hidden border-b border-white/10">
-                     <img
-                        src={project.image}
-                        alt={`${project.title} screenshot`}
-                        onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                        (e.currentTarget.nextSibling as HTMLElement).style.display = "flex";
-                        }}
-                        className="w-full h-full object-cover object-top
-                                 group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                     />
-                     {/* Subtle bottom fade so screenshot blends into card body */}
-                     <div className="absolute bottom-0 left-0 right-0 h-8
-                                    bg-gradient-to-t from-white/10 to-transparent pointer-events-none" />
-                  </div>
-      
-                  {/* Card body */}
-                  <div className="flex flex-col gap-4 p-5 sm:p-6">
-      
-                     <div className="flex flex-col gap-1.5">
-                        <h3
-                        className="text-white text-lg sm:text-xl font-semibold"
-                        >
-                        {project.title}
-                        </h3>
-                        <p className="text-white/60 text-sm leading-relaxed">
-                        {project.description}
-                        </p>
-                     </div>
-      
-                     <div className="flex flex-col gap-3">
-                        <div className="flex flex-wrap gap-1.5">
-                        {project.tags.map((tag, t) => (
-                           <span
-                              key={t}
-                              className="px-2.5 py-1 rounded-full text-[11px] font-medium text-white/70 bg-white/10 border border-white/20"
-                           >
-                              {tag}
-                           </span>
-                        ))}
-                        </div>
-      
-                        <div className="flex items-center gap-4">
-                        {project.githubUrl && (
-                           <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1 text-white/50 hover:text-white text-[11px] uppercase tracking-[0.2em] transition-colors duration-200"
-                           >
-                              GitHub <ArrowUpRight size={11} />
-                           </a>
-                        )}
-                        {project.liveUrl && (
-                           <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1 text-white/50 hover:text-white text-[11px] uppercase tracking-[0.2em] transition-colors duration-200"
-                           >
-                              Live <ArrowUpRight size={11} />
-                           </a>
-                        )}
-                        </div>
-                     </div>
-      
-                  </div>
-                  </motion.div>
-               ))}
-            </div>
-      
-            {/* View all */}
-            <motion.div
-               variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-               }}
-               className="flex justify-end"
-            >
+               {["Projects", "About", "Contact"].map((link) => (
                <a
-                  href="/projects"
-                  className="group flex items-center gap-2 text-white/50 hover:text-white transition-colors duration-300"
+                  key={link}
+                  href={`/${link.toLowerCase()}`}
+                  className="relative group"
                >
-                  <span className="text-[11px] uppercase tracking-[0.3em]">
-                  View all projects
+                  <span className="text-black/50 group-hover:text-black transition">
+                     {link}
                   </span>
-                  <motion.span
-                  className="flex items-center"
-                  whileHover={{ x: 3 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  >
-                  <ArrowUpRight size={15} />
-                  </motion.span>
+                  <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-black transition-all group-hover:w-full" />
                </a>
+               ))}
             </motion.div>
-      
+         </motion.div>
+
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex"
+         >
+            <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
+               
+               <img
+               src="/profilephoto.jpeg"
+               alt="profile"
+               className="w-full h-full object-cover grayscale contrast-125 brightness-90"
+               />
+
+               <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-white/10 mix-blend-overlay" />
+               <div className="absolute -inset-10 bg-black/10 blur-3xl -z-10" />
+            </div>
+         </motion.div>
+
+         </div>
+      </section>
+      <div className="px-4 md:px-6">
+         <section
+            ref={ref}
+            className="relative rounded-lg w-full h-[80vh] mt-15 overflow-hidden flex items-center"
+         >
+            {/* 🎥 VIDEO */}
+            <motion.video
+            src="/projects/runner.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ scale }}
+            className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90"
+            />
+
+            {/* DARK OVERLAY */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            <motion.div
+            style={{ opacity, y }}
+            className="relative z-10 px-8 md:px-10 max-w-4xl"
+            >
+               <p
+                  className="
+                     text-white
+                     text-3xl md:text-6xl
+                     leading-[1.15]
+                     tracking-[-0.01em]
+                     font-light
+                  "
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+               >
+                  I build <span className="italic">scalable systems,</span>
+                  <br />  
+                  real time applications
+                  <br />
+                  where <span className="italic">performance</span> meets  
+                  <span className="italic"> thoughtful design</span>.
+               </p>
             </motion.div>
          </section>
       </div>
-   );
+
+      {/* PROJECTS */}
+      <section className="px-8 py-32">
+        <div className="max-w-5xl flex flex-col gap-24">
+          {featuredProjects.map((project, i) => (
+            <motion.div
+              key={i}
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}}}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              whileHover={{ y: -2 }}
+              className="group cursor-pointer"
+            >
+              <h2 className="font-serif text-4xl transition-all group-hover:italic">
+                {project.title}
+              </h2>
+
+              <p className="font-sans text-black/60 mt-3 max-w-xl">
+                {project.description}
+              </p>
+
+              <div className="flex gap-4 mt-4 text-xs uppercase tracking-widest text-black/40">
+                {project.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* SKILLS */}
+      <section className="px-8 py-32">
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}}}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-4xl"
+        >
+          <h2 className="font-serif text-3xl mb-6">
+            Tools & Technologies
+          </h2>
+
+          <p className="font-sans text-lg text-black/70 leading-loose">
+            JavaScript, TypeScript, Go, Python, React, Tailwind CSS,
+            Framer Motion, Three.js, Node.js, Express, Flask, MongoDB, Git
+          </p>
+        </motion.div>
+      </section>
+
+      {/* CTA */}
+      <section className="px-8 py-40">
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}}}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-3xl"
+        >
+          <h2 className="font-serif text-4xl mb-6">
+            Let’s build something meaningful.
+          </h2>
+
+          <a
+            href="/contact"
+            className="font-sans text-sm uppercase tracking-[0.3em] border-b border-black hover:opacity-60"
+          >
+            Get in touch
+          </a>
+        </motion.div>
+      </section>
+
+    </div>
+  )
 }
