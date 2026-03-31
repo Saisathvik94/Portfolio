@@ -15,6 +15,16 @@ p, span, button {
   font-family: 'Inter', sans-serif;
 }
 
+::selection {
+  background-color: #facc15; /* Tailwind yellow-400 */
+  color: black;
+}
+
+::-moz-selection {
+  background-color: #facc15;
+  color: black;
+}
+
 /* Hide scrollbar for Chrome, Safari, Edge */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
