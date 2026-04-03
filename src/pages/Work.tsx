@@ -81,17 +81,6 @@ const container = {
   },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 60 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
 
 const SPAN_MAP = {
   large: "md:col-span-7 md:row-span-5",
@@ -108,7 +97,7 @@ function ProjectCard({ p }: { p: Project }) {
 
   return (
     <motion.article
-      variants={item}
+      variants={{ hidden: { opacity: 0, y: 60 },show: {opacity: 1,y: 0,transition: {duration: 0.8,ease: [0.22, 1, 0.36, 1]}}}}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 220, damping: 18 }}
       className={`
