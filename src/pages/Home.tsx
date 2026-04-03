@@ -55,7 +55,6 @@ const featuredProjects: Project[] = [
       tags: ["Go", "AI", "CLI"],
       image: "/projects/codemaxx.png",
       githubUrl: "https://github.com/Saisathvik94/codemaxx",
-      liveUrl: "#"
    },
 ]
 
