@@ -3,9 +3,10 @@ import { useState, useRef } from "react";
 import Footer from "../components/Footer";
 import emailjs from "@emailjs/browser";
 
-const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
+
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const fadeUp = {
   initial: { opacity: 0, y: 40 },
@@ -166,7 +167,7 @@ export function Contact() {
                 </label>
                 <input
                   type="text"
-                  name="from_name"
+                  name="name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   required
@@ -181,7 +182,7 @@ export function Contact() {
                 </label>
                 <input
                   type="email"
-                  name="from_email"
+                  name="email"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   required
