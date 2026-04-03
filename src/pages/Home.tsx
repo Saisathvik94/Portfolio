@@ -119,7 +119,7 @@ export function Home() {
                      variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
                      className="mt-10 flex gap-8 text-xs uppercase tracking-[0.3em]"
                   >
-                     {["Projects", "About", "Contact"].map((link) => (
+                     {["Work", "About", "Contact"].map((link) => (
                         <a
                            key={link}
                            href={`/${link.toLowerCase()}`}
