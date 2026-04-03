@@ -6,31 +6,31 @@ import Footer from "../components/Footer";
 
 // Skills
 const skills = [
-  "JavaScript",
-  "TypeScript",
-  "Go",
-  "Python",
-  "React",
-  "Nextjs",
-  "Websockets",
-  "Node.js",
-  "Express.js",
-  "Postgres",
-  "MongoDB",
-  "Git",
+   "JavaScript",
+   "TypeScript",
+   "Go",
+   "Python",
+   "React",
+   "Nextjs",
+   "Websockets",
+   "Node.js",
+   "Express.js",
+   "Postgres",
+   "MongoDB",
+   "Git",
 ];
 
 // projects interface
 interface Project {
-  title: string
-  description: string
-  tags: string[]
-  image: string
-  githubUrl?: string
-  liveUrl?: string
+   title: string
+   description: string
+   tags: string[]
+   image: string
+   githubUrl?: string
+   liveUrl?: string
 }
 
-const featuredProjects : Project[] = [
+const featuredProjects: Project[] = [
    {
       title: "Shareout",
       description:
@@ -38,7 +38,7 @@ const featuredProjects : Project[] = [
       tags: ["JavaScript", "React", "Node.js"],
       image: "/projects/shareout.png",
       githubUrl: "https://github.com/Saisathvik94/Shareout",
-      liveUrl: "https://shareout-taupe.vercel.app/" 
+      liveUrl: "https://shareout-taupe.vercel.app/"
    },
    {
       title: "Vendora",
@@ -49,7 +49,7 @@ const featuredProjects : Project[] = [
       githubUrl: "https://github.com/Saisathvik94/Vendora",
    },
    {
-      title: "CodeMaxx",      
+      title: "CodeMaxx",
       description:
          "AI-powered tool to explain, fix, and improve code across multiple languages.",
       tags: ["Go", "AI", "CLI"],
@@ -91,8 +91,8 @@ export function Home() {
    return (
       <div className="bg-[#fafafa] text-[#111] mt-25 md:mt-12">
          {/* HERO */}
-         <section className="min-h-screen bg-[#fafafa] text-black flex items-center px-4 md:px-16">
-            <div className="max-w-7xl w-full flex flex-col md:flex-row items-center gap-16">
+         <section className="min-h-screen bg-[#fafafa] text-black flex items-center px-4 md:px-8">
+            <div className="max-w-7xl w-full flex flex-col md:flex-row items-start gap-16">
                <motion.div
                   initial="hidden"
                   animate="show"
@@ -100,7 +100,7 @@ export function Home() {
                >
                   <motion.h1
                      variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
-                     className="text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1]"
+                     className="text-4xl md:text-6xl font-semibold tracking-[1.2] leading-[1.2]"
                   >
                      I’m Sai Sathvik, I build full-stack apps, developer tools, and real-time systems.
                   </motion.h1>
@@ -143,9 +143,9 @@ export function Home() {
                   <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
 
                      <img
-                        src="/profilephoto.jpeg"
+                        src="/assets/profilephoto.jpeg"
                         alt="profile"
-                        className="w-full h-full object-cover grayscale contrast-125 brightness-90"
+                        className="w-full h-full object-cover brightness-90"
                      />
 
                      <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-transparent to-white/10 mix-blend-overlay" />
@@ -158,11 +158,11 @@ export function Home() {
          <div className="px-4 md:px-6">
             <section
                ref={ref}
-               style={{ cursor : WHITE_CURSOR }}
+               style={{ cursor: WHITE_CURSOR }}
                className="relative rounded-lg w-full h-[80vh] mt-15 overflow-hidden flex items-center"
             >
                <motion.video
-                  src="/projects/runner.mp4"
+                  src="/runner.mp4"
                   autoPlay
                   muted
                   loop
@@ -201,7 +201,28 @@ export function Home() {
 
          {/* PROJECTS */}
          <section className="px-4 md:px-6 py-25 md:py-30">
-            <div className="w-full flex flex-col gap-24">
+            <motion.div
+               className="w-full flex flex-col justify-between mb-5 gap-10 sm:gap-10"
+               initial="hidden"
+               whileInView="show"
+               viewport={{ once: true, amount: 0.2 }}
+               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } } }}
+            >
+
+               <div className="flex flex-col gap-3">
+                  <h2 className="text-black text-4xl sm:text-5xl font-serif leading-tight">
+                     Some of my Work
+                  </h2>
+                  <motion.div
+                     className="h-[2px] w-72 rounded-full bg-black/40 md:w-95"
+                     initial={{ scaleX: 0, originX: 0 }}
+                     whileInView={{ scaleX: 1 }}
+                     transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                     viewport={{ once: true }}
+                  />
+               </div>
+            </motion.div>
+            <div className="w-full flex flex-col gap-10">
                {featuredProjects.map((project, i) => (
                   <motion.div
                      key={i}
@@ -307,7 +328,7 @@ export function Home() {
                      Skills
                   </h2>
                   <motion.div
-                     className="h-[2px] w-28 rounded-full bg-black/40"
+                     className="h-[2px] w-22 rounded-full bg-black/40 md:w-28"
                      initial={{ scaleX: 0, originX: 0 }}
                      whileInView={{ scaleX: 1 }}
                      transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -355,7 +376,7 @@ export function Home() {
                </a>
             </motion.div>
          </section>
-         <Footer/>
+         <Footer />
       </div>
    )
 }

@@ -5,7 +5,7 @@ import { Contact } from './pages/Contact';
 import { Navbar } from './components/Navbar';
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import { Projects } from './pages/Projects';
+import { Work } from './pages/Work';
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/work" element={<Work />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
