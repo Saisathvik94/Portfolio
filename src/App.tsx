@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { Work } from './pages/Work';
+import { Analytics } from "@vercel/analytics/react";
 
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
   }, [])
   return (
     <>
-     <BrowserRouter>
-     <Navbar></Navbar>
+    <Analytics />
+    <BrowserRouter>
+      <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
