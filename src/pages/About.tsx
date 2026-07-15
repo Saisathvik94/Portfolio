@@ -53,9 +53,7 @@ export function About() {
                         </h1>
                         <br />
                         <p className="text-neutral-700 leading-relaxed">
-                            I focus on building scalable, real-time web applications and modern
-                            user interfaces. I enjoy turning ideas into real products from
-                            full-stack marketplaces to CLI tools and OTP-based sharing systems.
+                            I focus on building scalable, real-time systems from backend infrastructure and developer tools to full-stack products. I like turning ideas into things that actually run in production, not just demos.
                         </p>
                     </motion.div>
 
@@ -77,14 +75,9 @@ export function About() {
                 <motion.div {...fadeUp} className="max-w-3xl mb-20">
                     <h2 className="text-2xl font-medium mb-4">My Journey</h2>
                     <p className="text-neutral-700 leading-relaxed">
-                        It started with a simple question: <em>how does this actually work?</em> What began
-                        with calculators and to-do apps quickly grew into full-stack systems — deployed,
-                        real, and used by others.
+                        It started with a simple question: how does this actually work? What began with calculators and to-do apps quickly grew into full-stack systems deployed, real, and used by others.
                         <br /><br />
-                        Over time, I moved from just writing React frontends to architecting backends
-                        with Node.js and Redis, and eventually learning Go to build CLI tools that run
-                        on Windows, macOS, and Linux. Today I focus on systems that are fast, real-time,
-                        and built to last — not just to demo.
+                        Over time, I moved from writing React frontends to architecting backend infrastructure — queues, workers, and the systems that keep them reliable. Today I'm going deeper into distributed systems and observability, starting from first principles rather than treating tools as black boxes.
                     </p>
                 </motion.div>
 
