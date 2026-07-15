@@ -101,7 +101,7 @@ export function Home() {
                      variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
                      className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight"
                   >
-                     I’m Sai Sathvik, I build full-stack apps, developer tools, and real-time systems.
+                     I'm Sai Sathvik. I build backend systems, developer tools, and full-stack products.
                   </motion.h1>
 
                   {/* SECOND LINE */}
@@ -109,8 +109,8 @@ export function Home() {
                      variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
                      className="mt-8 text-lg md:text-xl text-black/60 max-w-2xl leading-relaxed"
                   >
-                     I design and build software that is performant, reliable, and
-                     built for real-world use from web applications to backend systems.
+                     From production notification infrastructure to AI-assisted CLI tools.
+                     I build things that work, not just demo.
                   </motion.p>
 
                   {/* LINKS */}
