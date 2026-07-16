@@ -19,7 +19,7 @@ export function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-50 bg-[#fafafa]"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-5">
+      <div className="max-w-6xl mx-auto h-18 flex items-center justify-between px-6 py-5">
 
         {/* Logo */}
         <Link

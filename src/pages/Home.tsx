@@ -76,21 +76,10 @@ export function Home() {
       return () => window.removeEventListener("mousemove", move)
    }, [])
 
-   // Video Scroll
-   const ref = useRef(null)
-
-   const { scrollYProgress } = useScroll({
-      target: ref,
-      offset: ["start end", "end start"],
-   })
-
-   const scale = useTransform(scrollYProgress, [0, 1], [1.2, 1])
-   const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
-   const y = useTransform(scrollYProgress, [0, 1], [80, 0])
    return (
-      <div className="bg-[#fafafa] text-[#111] mt-25 md:mt-12">
+      <div className="bg-[#fafafa] text-[#111] pt-25">
          {/* HERO */}
-         <section className="min-h-screen bg-[#fafafa] text-black flex items-center px-4 md:px-8">
+         <section className="bg-[#fafafa] text-black flex items-center px-4 md:px-8">
             <div className="max-w-7xl w-full flex flex-col md:flex-row items-start gap-16">
                <motion.div
                   initial="hidden"
@@ -137,7 +126,7 @@ export function Home() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex"
+                  className="hidden lg:flex lg:w-1/2 lg:max-w-[500px] w-full"
                >
                   <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-2xl">
 
@@ -154,52 +143,39 @@ export function Home() {
 
             </div>
          </section>
-         <div className="px-4 md:px-6">
+         <div className="px-4 py-6 md:px-8 md:py-10">
             <section
-               ref={ref}
                style={{ cursor: WHITE_CURSOR }}
-               className="relative rounded-lg w-full h-[80vh] mt-15 overflow-hidden flex items-center"
+               className="relative w-full aspect-[2/3] overflow-hidden rounded-2xl bg-black"
             >
-               <motion.video
-                  src="/runner.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  style={{ scale }}
-                  className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90"
+               {/* Background */}
+               <motion.img
+                  src="/assets/poster.png"
+                  className="absolute inset-0 w-full h-full object-contain"
                />
 
-               {/* DARK OVERLAY */}
-               <div className="absolute inset-0 bg-black/50" />
+               {/* Warm cinematic glow */}
+               <div
+                  className="absolute inset-0"
+                  style={{
+                     background:
+                        "radial-gradient(circle at 72% 38%, rgba(255,196,80,0.12) 0%, rgba(255,196,80,0.05) 20%, transparent 45%)",
+                  }}
+               />
 
-               <motion.div
-                  style={{ opacity, y }}
-                  className="relative z-10 px-8 md:px-10 max-w-4xl"
-               >
-                  <p
-                     className="
-                     text-white
-                     text-3xl md:text-6xl
-                     leading-[1.15]
-                     tracking-[-0.01em]
-                     font-light
-                  "
-                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                  >
-                     I build <span className="italic">scalable systems,</span>
-                     <br />
-                     real time applications
-                     <br />
-                     where <span className="italic">performance</span> meets
-                     <span className="italic"> thoughtful design</span>.
-                  </p>
-               </motion.div>
+               {/* Premium vignette */}
+               <div
+                  className="absolute inset-0"
+                  style={{
+                     background:
+                        "linear-gradient(to bottom, rgba(0,0,0,.55), transparent 25%, transparent 75%, rgba(0,0,0,.75))",
+                  }}
+               />
             </section>
          </div>
 
          {/* PROJECTS */}
-         <section className="px-4 md:px-6 py-25 md:py-30">
+         <section className="px-4 md:px-8 py-10">
             <motion.div
                className="w-full flex flex-col justify-between mb-5 gap-10 sm:gap-10"
                initial="hidden"
@@ -307,7 +283,7 @@ export function Home() {
          </section>
 
          {/* SKILLS */}
-         <section className="w-full px-8 md:px-10 px-8">
+         <section className="w-full px-4 md:px-8 py-10">
             <motion.div
                className="w-full flex flex-col gap-8 sm:gap-10"
                initial="hidden"
@@ -355,7 +331,7 @@ export function Home() {
          </section>
 
          {/* CTA */}
-         <section className="w-full px-8 md:px-10 px-8 py-40">
+         <section className="w-full px-4 md:px-8 py-40">
             <motion.div
                variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
                initial="hidden"
