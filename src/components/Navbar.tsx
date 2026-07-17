@@ -25,7 +25,7 @@ export function Navbar() {
         <Link
           to="/"
           style={{ fontFamily: "'Cormorant Garamond', serif" }}
-          className="text-2xl font-serif font-semibold hover:opacity-60 transition"
+          className="text-2xl font-semibold hover:opacity-60 transition"
         >
           Sai Sathvik
         </Link>

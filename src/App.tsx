@@ -3,9 +3,11 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 import { Navbar } from './components/Navbar';
+import { ScrollToTop } from './components/ScrollToTop';
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { Work } from './pages/Work';
+import { ProjectBlog } from './pages/ProjectBlog';
 import { Analytics } from "@vercel/analytics/react";
 
 
@@ -31,11 +33,13 @@ function App() {
     <>
     <Analytics />
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/project/:id" element={<ProjectBlog />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>

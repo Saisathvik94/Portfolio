@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { AnimatePresence } from "framer-motion"
 import { ArrowUpRight } from "lucide-react";
 import Footer from "../components/Footer";
@@ -31,6 +31,15 @@ interface Project {
 }
 
 const featuredProjects: Project[] = [
+   {
+      title: "Queuely",
+      description:
+         "Notification infrastructure SaaS with durable ingestion and async delivery — SQS-backed queuing, BullMQ processing, and a typed SDK published to npm.",
+      tags: ["TypeScript", "Next.js", "Express", "BullMQ", "Prisma", "Redis"],
+      image: "/projects/queuely.png",
+      githubUrl: "https://github.com/Saisathvik94/Queuely",
+      liveUrl: "https://queuely.saisathvik.site"
+   },
    {
       title: "Shareout",
       description:

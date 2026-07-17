@@ -1,82 +1,15 @@
 import { motion } from "framer-motion";
 import Footer from "../components/Footer";
 
-interface Project {
-  id: string;
-  index: string;
-  title: string;
-  tagline: string;
-  category: string;
-  year: string;
-  stack: string[];
-  githubUrl: string;
-  liveUrl?: string;
-  stars: number;
-  image: string; 
-  span: "large" | "mid" | "small" | "wide";
-}
-
-const PROJECTS: Project[] = [
-  {
-    id: "shareout",
-    index: "01",
-    title: "Shareout",
-    tagline: "Ephemeral file sharing via one-time OTP",
-    category: "Full-Stack Web App",
-    year: "2025",
-    stack: ["React", "Node.js", "Redis", "Supabase"],
-    githubUrl: "https://github.com/Saisathvik94/Shareout",
-    liveUrl: "https://shareout-taupe.vercel.app/",
-    stars: 5,
-    span: "wide",
-    image: "/projects/shareout.png",  // ← add your static image
-  },
-  {
-    id: "organizer",
-    index: "02",
-    title: "Organizer",
-    tagline: "One command. Clean directories.",
-    category: "CLI Tool · Go",
-    year: "2026",
-    stack: ["Go", "GoReleaser", "Bash"],
-    githubUrl: "https://github.com/Saisathvik94/organizer",
-    stars: 5,
-    span: "small",
-    image: "/projects/organizer.png",
-  },
-  {
-    id: "codemaxx",
-    index: "03",
-    title: "CodeMaxx",
-    tagline: "AI-powered coding assistant in terminal",
-    category: "CLI Tool · AI",
-    year: "2026",
-    stack: ["Go", "Claude API"],
-    githubUrl: "https://github.com/Saisathvik94/codemaxx",
-    stars: 3,
-    span: "large",
-    image: "/projects/codemaxx.png",
-  },
-  {
-    id: "vendora",
-    index: "04",
-    title: "Vendora",
-    tagline: "Marketplace with modular architecture",
-    category: "Full-Stack Web App",
-    year: "2025",
-    stack: ["React", "Node", "MongoDB"],
-    githubUrl: "https://github.com/Saisathvik94/Vendora",
-    stars: 2,
-    span: "mid",
-    image: "/projects/vendora.png",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { PROJECTS, type Project } from "../data/projectsData";
 
 const container = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
     },
   },
 };
@@ -94,12 +27,18 @@ const WHITE_CURSOR = `url("data:image/svg+xml;base64,${btoa(`<svg xmlns="http://
 function ProjectCard({ p }: { p: Project }) {
   const isLarge = p.span === "large";
   const isWide = p.span === "wide";
+  const navigate = useNavigate();
 
   return (
     <motion.article
-      variants={{ hidden: { opacity: 0, y: 60 },show: {opacity: 1,y: 0,transition: {duration: 0.8,ease: [0.22, 1, 0.36, 1]}}}}
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 220, damping: 18 }}
+      onClick={() => navigate(`/project/${p.id}`)}
+      variants={{ 
+        hidden: { opacity: 0, y: 80, filter: "blur(8px)" },
+        show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } }
+      }}
+      whileHover={{ y: -8, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
       className={`
         group relative col-span-1 ${SPAN_MAP[p.span]}
         rounded-2xl overflow-hidden
@@ -108,6 +47,7 @@ function ProjectCard({ p }: { p: Project }) {
         border border-neutral-200/50
         hover:border-neutral-300
         transition-all duration-300
+        cursor-pointer
       `}
     >
       {/* Image — only visible on hover */}
@@ -123,7 +63,7 @@ function ProjectCard({ p }: { p: Project }) {
           "
         />
         {/* Overlay — only darkens when image is showing */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-500" />
+        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-700 ease-out" />
       </div>
 
       {/* Watermark index */}
@@ -133,8 +73,8 @@ function ProjectCard({ p }: { p: Project }) {
           absolute bottom-0 right-4
           text-[6rem] md:text-[8rem]
           font-serif leading-none
-          opacity-[0.03] group-hover:opacity-[0.07]
-          transition duration-500
+          opacity-[0.03] group-hover:opacity-[0.08] group-hover:translate-x-2
+          transition-all duration-700 ease-out
           text-white
           pointer-events-none select-none
         "
@@ -189,7 +129,7 @@ function ProjectCard({ p }: { p: Project }) {
         {/* Footer */}
         <div className="flex justify-between items-center mt-6 text-[11px] text-neutral-400">
           <span>{p.year}</span>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-4 text-sm" onClick={(e) => e.stopPropagation()}>
             {p.liveUrl && (
               <a
                 href={p.liveUrl}
