@@ -114,7 +114,7 @@ export function Home() {
                   {/* LINKS */}
                   <motion.div
                      variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } } }}
-                     className="mt-10 flex gap-8 text-xs uppercase tracking-[0.3em]"
+                     className="mt-10 flex flex-wrap gap-8 text-xs uppercase tracking-[0.3em]"
                   >
                      {["Work", "About", "Contact"].map((link) => (
                         <a
@@ -198,7 +198,7 @@ export function Home() {
                      Some of my Work
                   </h2>
                   <motion.div
-                     className="h-[2px] w-72 rounded-full bg-black/40 md:w-95"
+                     className="h-[2px] w-full max-w-72 rounded-full bg-black/40 md:w-96 md:max-w-none"
                      initial={{ scaleX: 0, originX: 0 }}
                      whileInView={{ scaleX: 1 }}
                      transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -234,12 +234,12 @@ export function Home() {
                         {project.description}
                      </p>
 
-                     <div className="flex gap-4 mt-4 text-xs uppercase tracking-widest text-black/40">
+                     <div className="flex flex-wrap gap-4 mt-4 text-xs uppercase tracking-widest text-black/40">
                         {project.tags.map((tag) => (
                            <span key={tag}>{tag}</span>
                         ))}
                      </div>
-                     <div className="flex gap-4 mt-4 text-xs uppercase tracking-widest text-black/40">
+                     <div className="flex flex-wrap gap-4 mt-4 text-xs uppercase tracking-widest text-black/40">
                         {project.githubUrl && (
                            <a
                               href={project.githubUrl}
@@ -312,7 +312,7 @@ export function Home() {
                      Skills
                   </h2>
                   <motion.div
-                     className="h-[2px] w-22 rounded-full bg-black/40 md:w-28"
+                     className="h-[2px] w-24 rounded-full bg-black/40 md:w-28"
                      initial={{ scaleX: 0, originX: 0 }}
                      whileInView={{ scaleX: 1 }}
                      transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
